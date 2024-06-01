@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: changeBackgroundColor 6s linear infinite;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.5); /* Slightly translucent */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            animation: moveLeftRight 2s ease-in-out infinite;
+        }
+        @keyframes moveLeftRight {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+        @keyframes changeBackgroundColor {
+            0% {
+                background-color: #fff;
+            }
+            25% {
+                background-color: #f8d7da;
+            }
+            50% {
+                background-color: #d1ecf1;
+            }
+            75% {
+                background-color: #fff3cd;
+            }
+            100% {
+                background-color: #fff;
+            }
+        }
+        h1 {
+            color: #ff6347;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        .apology {
+            margin-top: 25px;
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${exceptionDetails.message}">Error</h1>
+    <p th:text="'Status: ' + ${exceptionDetails.httpStatus}">Status: </p>
+    <p th:text="'Timestamp: ' + ${exceptionDetails.timestamp}">Timestamp: </p>
+
+    <a href="/" class="btn btn-primary">Go to Home</a>
+    <p class="apology">We apologize for any inconvenience caused.</p>
+</div>
+</body>
+</html>
